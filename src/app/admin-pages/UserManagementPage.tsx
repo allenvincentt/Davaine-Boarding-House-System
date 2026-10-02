@@ -383,11 +383,6 @@ export default function UserManagementPage() {
         <View style={styles.headerRow}>
           <View style={styles.headerText}>
             <Text style={styles.title}>User Management</Text>
-            <Text style={styles.subtitle}>
-              {readOnly
-                ? 'Viewing system users, roles, and access levels (read-only).'
-                : 'Manage system users, roles, and access levels.'}
-            </Text>
           </View>
           {!compact && canCreate && (
             <GradientButton
@@ -759,9 +754,6 @@ function UserFormModal({
 
   const creating = mode === 'create';
   const title = creating ? 'Add User' : 'Edit User';
-  const subtitle = creating
-    ? 'Create the account, then Davaine emails a confirmation link.'
-    : 'Only the user role can be changed here.';
 
   const handleSave = async () => {
     if (submitting) {
@@ -851,7 +843,6 @@ function UserFormModal({
             <Text style={styles.modalTitle} numberOfLines={1}>
               {title}
             </Text>
-            <Text style={styles.modalSubtitle}>{subtitle}</Text>
           </View>
         </View>
 
@@ -983,12 +974,6 @@ const styles = StyleSheet.create({
     color: DefaultTheme.colors.ink,
     fontFamily: DefaultTheme.fonts.bodyBold,
     fontSize: 22,
-  },
-  subtitle: {
-    marginTop: 4,
-    color: DefaultTheme.colors.muted,
-    fontFamily: DefaultTheme.fonts.bodyMedium,
-    fontSize: 13,
   },
   addButton: {
     minHeight: 44,
@@ -1182,12 +1167,6 @@ const styles = StyleSheet.create({
     color: DefaultTheme.colors.ink,
     fontFamily: DefaultTheme.fonts.bodyBold,
     fontSize: 17,
-  },
-  modalSubtitle: {
-    marginTop: 3,
-    color: DefaultTheme.colors.muted,
-    fontFamily: DefaultTheme.fonts.bodyMedium,
-    fontSize: 12.5,
   },
   formFields: {
     marginTop: 22,

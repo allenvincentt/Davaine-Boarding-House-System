@@ -529,11 +529,6 @@ export default function BillsPage() {
         <View style={styles.headerRow}>
           <View style={styles.headerText}>
             <Text style={styles.title}>Bills</Text>
-            <Text style={styles.subtitle}>
-              {readOnly
-                ? 'Viewing generated monthly bills and rental payments (read-only).'
-                : 'Generate monthly bills, issue receipts, and record rental payments.'}
-            </Text>
           </View>
           {!compact && canCreate && (
             <GradientButton
@@ -795,8 +790,7 @@ export default function BillsPage() {
           <Card
             style={styles.card}
             revealDelay={420}
-            title="Rental Payments"
-            subtitle={`${activePeriod.payments.length} record(s) for ${periodLabelOf(activePeriod)}`}>
+            title="Rental Payments">
             <View style={styles.paymentList}>
               {[...activePeriod.payments]
                 .sort((left, right) => right.paidAt.localeCompare(left.paidAt))
@@ -1223,12 +1217,6 @@ const styles = StyleSheet.create({
     color: DefaultTheme.colors.ink,
     fontFamily: DefaultTheme.fonts.bodyBold,
     fontSize: 22,
-  },
-  subtitle: {
-    marginTop: 4,
-    color: DefaultTheme.colors.muted,
-    fontFamily: DefaultTheme.fonts.bodyMedium,
-    fontSize: 13,
   },
   addButton: {
     minHeight: 44,

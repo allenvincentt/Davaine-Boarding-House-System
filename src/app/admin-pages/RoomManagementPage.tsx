@@ -457,11 +457,6 @@ export default function RoomManagementPage() {
         <View style={styles.headerRow}>
           <View style={styles.headerText}>
             <Text style={styles.title}>Room Management</Text>
-            <Text style={styles.subtitle}>
-              {readOnly
-                ? 'Viewing rooms, tenants, and monthly rates (read-only).'
-                : 'Manage room occupancy, renters, and monthly rates.'}
-            </Text>
           </View>
           {!compact && canCreate && (
             <GradientButton
@@ -614,7 +609,6 @@ export default function RoomManagementPage() {
 
         <Card
           title="Recent Activity"
-          subtitle="Latest room and tenant updates"
           style={styles.activityCard}
           revealDelay={400}
           action={<Text style={styles.viewAll}>View all</Text>}>
@@ -1117,12 +1111,6 @@ const styles = StyleSheet.create({
     color: DefaultTheme.colors.ink,
     fontFamily: DefaultTheme.fonts.bodyBold,
     fontSize: 22,
-  },
-  subtitle: {
-    marginTop: 4,
-    color: DefaultTheme.colors.muted,
-    fontFamily: DefaultTheme.fonts.bodyMedium,
-    fontSize: 13,
   },
   addButton: {
     minHeight: 44,

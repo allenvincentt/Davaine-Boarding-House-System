@@ -335,17 +335,11 @@ export default function ContentPage() {
         <View style={styles.headerRow}>
           <View style={styles.headerText}>
             <Text style={styles.title}>Content</Text>
-            <Text style={styles.subtitle}>
-              {canEdit
-                ? 'Upload the photos and copy shown on the public landing page.'
-                : 'Viewing the website photos and copy (read-only).'}
-            </Text>
           </View>
         </View>
 
         <Card
           title="Landing Carousel"
-          subtitle="Photos shown in the curved carousel on the home section"
           style={styles.card}
           revealDelay={280}
           action={
@@ -436,7 +430,6 @@ export default function ContentPage() {
 
         <Card
           title="Room Photos"
-          subtitle="The card photo and the details slider for every room"
           style={styles.card}
           revealDelay={340}
           {...scrollNavigator.targetProps}>
@@ -762,12 +755,6 @@ const styles = StyleSheet.create({
     color: DefaultTheme.colors.ink,
     fontFamily: DefaultTheme.fonts.bodyBold,
     fontSize: 22,
-  },
-  subtitle: {
-    marginTop: 4,
-    color: DefaultTheme.colors.muted,
-    fontFamily: DefaultTheme.fonts.bodyMedium,
-    fontSize: 13,
   },
   card: {
     width: '100%',

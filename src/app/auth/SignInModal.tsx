@@ -101,6 +101,14 @@ export function SignInModal({
     reset();
   }, [isSubmitting, onClose, resetForm, reset]);
 
+  const openLegal = useCallback(
+    (path: '/legal/TermsPage' | '/legal/PrivacyPolicyPage') => {
+      handleClose();
+      router.push(path);
+    },
+    [handleClose, router],
+  );
+
   const handleChangeEmail = useCallback((text: string) => {
     setEmail(text);
     setFieldErrors((current) => (current.email ? { ...current, email: undefined } : current));
@@ -193,8 +201,7 @@ export function SignInModal({
         </View>
 
         <View style={[styles.sheet, isMobile && styles.sheetMobile]}>
-          <Text style={styles.title}>Welcome Back</Text>
-          <Text style={styles.subtitle}>Sign in to manage your stay at Davaine</Text>
+          <Text style={styles.title}>Sign In</Text>
 
           {biometricAvailable && (
             <>
@@ -272,6 +279,18 @@ export function SignInModal({
             hitSlop={8}>
             <Text style={styles.forgotText}>Forgot your password?</Text>
           </Pressable>
+
+          <Text style={styles.legalText}>
+            By signing in, you agree to the{' '}
+            <Text accessibilityRole="link" style={styles.legalLink} onPress={() => openLegal('/legal/TermsPage')}>
+              Terms and Conditions
+            </Text>{' '}
+            and{' '}
+            <Text accessibilityRole="link" style={styles.legalLink} onPress={() => openLegal('/legal/PrivacyPolicyPage')}>
+              Privacy Policy
+            </Text>
+            .
+          </Text>
         </View>
       </Modal>
 
@@ -339,13 +358,6 @@ const styles = StyleSheet.create({
     color: DefaultTheme.colors.ink,
     fontFamily: DefaultTheme.fonts.heading,
     fontSize: 27,
-    textAlign: 'center',
-  },
-  subtitle: {
-    marginTop: 6,
-    color: DefaultTheme.colors.muted,
-    fontFamily: DefaultTheme.fonts.body,
-    fontSize: 13,
     textAlign: 'center',
   },
   biometricButton: {
@@ -434,6 +446,19 @@ const styles = StyleSheet.create({
     color: DefaultTheme.colors.primary,
     fontFamily: DefaultTheme.fonts.bodySemiBold,
     fontSize: 13,
+    textDecorationLine: 'underline',
+  },
+  legalText: {
+    marginTop: 16,
+    color: DefaultTheme.colors.muted,
+    fontFamily: DefaultTheme.fonts.body,
+    fontSize: 11.5,
+    lineHeight: 17,
+    textAlign: 'center',
+  },
+  legalLink: {
+    color: DefaultTheme.colors.primary,
+    fontFamily: DefaultTheme.fonts.bodySemiBold,
     textDecorationLine: 'underline',
   },
 });

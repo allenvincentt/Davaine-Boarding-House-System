@@ -11,7 +11,7 @@ type PageMetaProps = {
 export function PageMeta({ title, description, exact = false }: PageMetaProps) {
   return (
     <Head>
-      <title>{exact ? title : `${title} · ${BRAND}`}</title>
+      <title>{exact ? title : `${title} | ${BRAND}`}</title>
       {!!description && <meta name="description" content={description} />}
     </Head>
   );

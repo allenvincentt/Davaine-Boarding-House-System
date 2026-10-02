@@ -284,9 +284,11 @@ export function Modal({
         onStartShouldSetPanResponder: () => true,
         onStartShouldSetPanResponderCapture: () => true,
         onMoveShouldSetPanResponder: (_event, gesture) =>
-          Math.abs(gesture.dy) > 2 && Math.abs(gesture.dy) >= Math.abs(gesture.dx),
+          Math.abs(gesture.dy) > 2 &&
+          Math.abs(gesture.dy) >= Math.abs(gesture.dx),
         onMoveShouldSetPanResponderCapture: (_event, gesture) =>
-          Math.abs(gesture.dy) > 2 && Math.abs(gesture.dy) >= Math.abs(gesture.dx),
+          Math.abs(gesture.dy) > 2 &&
+          Math.abs(gesture.dy) >= Math.abs(gesture.dx),
         onPanResponderTerminationRequest: () => false,
         onPanResponderGrant: () => {
           sheetDragY.setValue(0);
@@ -473,7 +475,9 @@ export function Modal({
               style={styles.keyboardAvoider}
               contentContainerStyle={[
                 styles.scrollContent,
-                webKeyboardInset > 0 ? { paddingBottom: webKeyboardInset } : null,
+                webKeyboardInset > 0
+                  ? { paddingBottom: webKeyboardInset }
+                  : null,
               ]}
               keyboardShouldPersistTaps="handled"
               keyboardDismissMode="on-drag"
@@ -501,7 +505,10 @@ export function Modal({
                   },
                 ]}
               >
-                <View onLayout={handleContentLayout} style={styles.contentInner}>
+                <View
+                  onLayout={handleContentLayout}
+                  style={styles.contentInner}
+                >
                   <ModalKeyboardContext.Provider value={keyboardContextValue}>
                     {children}
                   </ModalKeyboardContext.Provider>
@@ -676,18 +683,26 @@ export function StepperModal({
       dismissOnBackdropPress={dismissOnBackdropPress && !submitting}
       contentStyle={contentStyle}
     >
-      <View style={[stepperStyles.body, !horizontal && stepperStyles.bodyCompact]}>
+      <View
+        style={[stepperStyles.body, !horizontal && stepperStyles.bodyCompact]}
+      >
         <View style={stepperStyles.header}>
           {!!icon && (
             <View style={stepperStyles.headerBadge}>
-              <AppIcon name={icon} size={20} tintColor={DefaultTheme.colors.primary} />
+              <AppIcon
+                name={icon}
+                size={20}
+                tintColor={DefaultTheme.colors.primary}
+              />
             </View>
           )}
           <View style={stepperStyles.headerText}>
             <Text style={stepperStyles.title} numberOfLines={1}>
               {title}
             </Text>
-            {!!subtitle && <Text style={stepperStyles.subtitle}>{subtitle}</Text>}
+            {!!subtitle && (
+              <Text style={stepperStyles.subtitle}>{subtitle}</Text>
+            )}
           </View>
           <View style={stepperStyles.counter}>
             <Text style={stepperStyles.counterText}>
@@ -733,7 +748,9 @@ export function StepperModal({
               ]}
             >
               {!!activeStep?.caption && (
-                <Text style={stepperStyles.stepCaption}>{activeStep.caption}</Text>
+                <Text style={stepperStyles.stepCaption}>
+                  {activeStep.caption}
+                </Text>
               )}
               {activeStep?.content}
             </Animated.View>
@@ -795,7 +812,11 @@ function StepBullet({
 }) {
   const done = index < current;
   const active = index === current;
-  const image = active ? Gradient.base : done ? Gradient.pressed : Gradient.soft;
+  const image = active
+    ? Gradient.base
+    : done
+      ? Gradient.pressed
+      : Gradient.soft;
   const tint =
     active || done ? DefaultTheme.colors.white : DefaultTheme.colors.muted;
 
@@ -822,7 +843,12 @@ function StepBullet({
       ) : icon ? (
         <AppIcon name={icon} size={iconSize} tintColor={tint} />
       ) : (
-        <Text style={[stepperStyles.bulletText, active && stepperStyles.bulletTextActive]}>
+        <Text
+          style={[
+            stepperStyles.bulletText,
+            active && stepperStyles.bulletTextActive,
+          ]}
+        >
           {index + 1}
         </Text>
       )}
@@ -929,7 +955,10 @@ function StepRow({
     expanded && settled
       ? undefined
       : measured
-        ? progress.interpolate({ inputRange: [0, 1], outputRange: [0, contentHeight] })
+        ? progress.interpolate({
+            inputRange: [0, 1],
+            outputRange: [0, contentHeight],
+          })
         : expanded
           ? undefined
           : 0;
@@ -945,7 +974,9 @@ function StepRow({
           ]}
         >
           {index < current && (
-            <View style={[StyleSheet.absoluteFill, gradientLayer(Gradient.base)]} />
+            <View
+              style={[StyleSheet.absoluteFill, gradientLayer(Gradient.base)]}
+            />
           )}
         </View>
       )}
@@ -974,13 +1005,19 @@ function StepRow({
         />
         <View style={stepperStyles.railHeaderText}>
           <Text
-            style={[stepperStyles.railLabel, expanded && stepperStyles.railLabelActive]}
+            style={[
+              stepperStyles.railLabel,
+              expanded && stepperStyles.railLabelActive,
+            ]}
             numberOfLines={1}
           >
             {step.label}
           </Text>
           {!!step.caption && (
-            <Text style={stepperStyles.railCaption} numberOfLines={expanded ? 3 : 2}>
+            <Text
+              style={stepperStyles.railCaption}
+              numberOfLines={expanded ? 3 : 2}
+            >
               {step.caption}
             </Text>
           )}
@@ -997,7 +1034,11 @@ function StepRow({
             ],
           }}
         >
-          <AppIcon name="chevronDown" size={14} tintColor={DefaultTheme.colors.muted} />
+          <AppIcon
+            name="chevronDown"
+            size={14}
+            tintColor={DefaultTheme.colors.muted}
+          />
         </Animated.View>
       </Pressable>
 

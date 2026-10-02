@@ -9,7 +9,6 @@ export default function TenantDirectoryPage() {
       <ComingSoonPlaceholder
         icon="directory"
         title="Tenant Directory"
-        description="Browse tenant profiles, contact info, and move-in history."
       />
     </MainContentArea>
   );

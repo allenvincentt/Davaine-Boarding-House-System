@@ -9,7 +9,6 @@ export default function MonthlySummaryPage() {
       <ComingSoonPlaceholder
         icon="chart"
         title="Monthly Summary"
-        description="View monthly occupancy, revenue, and collection reports."
       />
     </MainContentArea>
   );

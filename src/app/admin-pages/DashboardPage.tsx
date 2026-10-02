@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, type StyleProp, type TextStyle } from 'react-native';
 
 import { PageMeta } from '@/components/common/PageMeta';
@@ -10,7 +9,6 @@ import { LineAreaChart } from '@/components/ui/charts/LineAreaChart';
 import { Table, type TableColumn } from '@/components/ui/Table';
 import { DefaultTheme } from '@/constants/defaultTheme';
 import { useCountUp } from '@/hooks/useEntranceAnimation';
-import { useAuth } from '@/providers/AuthProvider';
 
 type ActivityItem = {
   id: string;
@@ -131,44 +129,11 @@ const duePaymentColumns: TableColumn<DuePaymentRow>[] = [
   },
 ];
 
-function useGreeting() {
-  const [greeting, setGreeting] = useState(getGreeting);
-
-  useEffect(() => {
-    const timer = setInterval(() => setGreeting(getGreeting()), 60000);
-    return () => clearInterval(timer);
-  }, []);
-
-  return greeting;
-}
-
-function getGreeting() {
-  const hour = new Date().getHours();
-  if (hour < 12) return 'Good morning';
-  if (hour < 18) return 'Good afternoon';
-  return 'Good evening';
-}
-
 export default function DashboardPage() {
-  const { profile } = useAuth();
-  const greeting = useGreeting();
-  const adminName = profile?.fullName ?? 'Admin';
-
   return (
     <MainContentArea>
       <PageMeta title="Dashboard" description="Occupancy, collections, and activity across Davaine." />
-      <View style={styles.greetingRow}>
-        <View>
-          <Text style={styles.greetingTitle}>
-            {greeting}, {adminName.split(' ')[0]} <Text>👋</Text>
-          </Text>
-          <Text style={styles.greetingSubtitle}>Here is what is happening at Davaine today.</Text>
-        </View>
-        <View style={styles.statusPill}>
-          <View style={styles.statusDot} />
-          <Text style={styles.statusText}>All systems operational</Text>
-        </View>
-      </View>
+      <Text style={styles.title}>Dashboard</Text>
 
       <KPICardsRow>
         <KPICard
@@ -239,7 +204,6 @@ export default function DashboardPage() {
       <View style={styles.chartsRow}>
         <Card
           title="Occupancy Trend"
-          subtitle="6-month room usage overview"
           style={styles.trendCard}
           revealDelay={540}
           action={
@@ -260,7 +224,6 @@ export default function DashboardPage() {
 
         <Card
           title="Room Occupancy"
-          subtitle="Current status breakdown"
           style={styles.occupancyCard}
           revealDelay={620}>
           <View style={styles.donutWrap}>
@@ -284,7 +247,6 @@ export default function DashboardPage() {
       <View style={styles.bottomRow}>
         <Card
           title="Recent Activity"
-          subtitle="Latest system events & updates"
           style={styles.activityCard}
           revealDelay={700}
           action={<Text style={styles.viewAll}>View all</Text>}>
@@ -313,7 +275,6 @@ export default function DashboardPage() {
 
         <Card
           title="Due Payments Today"
-          subtitle={`${duePaymentsToday.length} tenants to collect from`}
           style={styles.duePaymentsTodayCard}
           revealDelay={780}>
           {duePaymentsToday.map((entry, index) => (
@@ -339,7 +300,6 @@ export default function DashboardPage() {
 
         <Card
           title="Due Payments"
-          subtitle="Upcoming and overdue collections"
           style={styles.duePaymentsCard}
           revealDelay={860}>
           <Table
@@ -411,45 +371,10 @@ function OccupancyStat({
 }
 
 const styles = StyleSheet.create({
-  greetingRow: {
-    flexDirection: 'row',
-    flexWrap: 'wrap',
-    alignItems: 'flex-start',
-    justifyContent: 'space-between',
-    gap: 12,
-  },
-  greetingTitle: {
+  title: {
     color: DefaultTheme.colors.ink,
     fontFamily: DefaultTheme.fonts.bodyBold,
     fontSize: 22,
-  },
-  greetingSubtitle: {
-    marginTop: 4,
-    color: DefaultTheme.colors.muted,
-    fontFamily: DefaultTheme.fonts.bodyMedium,
-    fontSize: 13,
-  },
-  statusPill: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 7,
-    paddingHorizontal: 12,
-    paddingVertical: 7,
-    borderRadius: DefaultTheme.radius.pill,
-    borderWidth: 1,
-    borderColor: DefaultTheme.colors.line,
-    backgroundColor: DefaultTheme.colors.white,
-  },
-  statusDot: {
-    width: 7,
-    height: 7,
-    borderRadius: 4,
-    backgroundColor: '#2E8A57',
-  },
-  statusText: {
-    color: DefaultTheme.colors.ink,
-    fontFamily: DefaultTheme.fonts.bodySemiBold,
-    fontSize: 11.5,
   },
   chartsRow: {
     flexDirection: 'row',

@@ -7,7 +7,7 @@ import type { AppIconName } from '@/constants/icons';
 type ComingSoonPlaceholderProps = {
   icon: AppIconName;
   title: string;
-  description: string;
+  description?: string;
 };
 
 export function ComingSoonPlaceholder({ icon, title, description }: ComingSoonPlaceholderProps) {
@@ -18,7 +18,7 @@ export function ComingSoonPlaceholder({ icon, title, description }: ComingSoonPl
       </View>
       <Text style={styles.badge}>COMING SOON</Text>
       <Text style={styles.title}>{title}</Text>
-      <Text style={styles.description}>{description}</Text>
+      {!!description && <Text style={styles.description}>{description}</Text>}
     </View>
   );
 }

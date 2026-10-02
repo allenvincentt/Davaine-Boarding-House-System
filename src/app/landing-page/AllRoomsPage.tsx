@@ -118,12 +118,7 @@ export default function AllRoomsPage() {
             <Text style={styles.backText}>Back to Home</Text>
           </Pressable>
 
-          <Text style={styles.eyebrow}>OUR ACCOMMODATIONS</Text>
           <Text style={styles.title}>All Rooms</Text>
-          <Text style={styles.description}>
-            Every room across Bldg. A and Bldg. B, with the same rates and availability our
-            management team uses.
-          </Text>
 
           <View style={styles.summaryRow}>
             <SummaryChip icon="rooms" label={`${rooms.length} total rooms`} />
@@ -298,27 +293,12 @@ const styles = StyleSheet.create({
     fontFamily: DefaultTheme.fonts.bodyBold,
     fontSize: 12.5,
   },
-  eyebrow: {
-    color: DefaultTheme.colors.primary,
-    fontFamily: DefaultTheme.fonts.bodyBold,
-    fontSize: 11,
-    letterSpacing: 1.25,
-  },
   title: {
-    marginTop: 12,
     color: DefaultTheme.colors.ink,
     fontFamily: DefaultTheme.fonts.heading,
     fontSize: 34,
     lineHeight: 40,
     letterSpacing: -0.8,
-  },
-  description: {
-    maxWidth: 560,
-    marginTop: 10,
-    color: DefaultTheme.colors.muted,
-    fontFamily: DefaultTheme.fonts.body,
-    fontSize: 14,
-    lineHeight: 21,
   },
   summaryRow: {
     marginTop: 20,

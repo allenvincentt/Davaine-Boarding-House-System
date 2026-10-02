@@ -323,11 +323,6 @@ export default function FeedbackPage() {
         <View style={styles.headerRow}>
           <View style={styles.headerText}>
             <Text style={styles.title}>Feedback</Text>
-            <Text style={styles.subtitle}>
-              {canModerate
-                ? 'Review anonymous room ratings and choose what shows on the website.'
-                : 'Viewing anonymous room ratings and comments (read-only).'}
-            </Text>
           </View>
         </View>
 
@@ -676,12 +671,6 @@ const styles = StyleSheet.create({
     color: DefaultTheme.colors.ink,
     fontFamily: DefaultTheme.fonts.bodyBold,
     fontSize: 22,
-  },
-  subtitle: {
-    marginTop: 4,
-    color: DefaultTheme.colors.muted,
-    fontFamily: DefaultTheme.fonts.bodyMedium,
-    fontSize: 13,
   },
   tableCard: {
     width: '100%',
