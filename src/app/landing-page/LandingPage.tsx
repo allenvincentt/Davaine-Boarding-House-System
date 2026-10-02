@@ -288,7 +288,8 @@ export default function LandingPage() {
   return (
     <View style={styles.page}>
       <PageMeta
-        title="Home"
+        exact
+        title="Davaine Boarding House"
         description="Davaine Boarding House in Toril, Davao City. Browse rooms, rates, and availability."
       />
       <StatusBar style="dark" />
